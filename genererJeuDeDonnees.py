@@ -68,7 +68,7 @@ def genererJeuDeDonnees(nbVariables, cardinalD, nbContraintes, tauxSatisf):
         j = randint(0, nbVariables-1)
 
         #verifier qu'une relation de contrainte entre Xi et Xj n'existe pas déjà
-        if ((i,j) in listeContraintesCrees) or ((j,i) in listeContraintesCrees):
+        if ((i,j) in listeContraintesCrees) or ((j,i) in listeContraintesCrees) or i==j:
             continue
 
         else:
