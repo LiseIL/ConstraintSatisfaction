@@ -8,14 +8,16 @@
 # contrairement au cas général où la taille des domaine
 # est  a priori quelconque.
 
+#(Claire) Du coup l'algo PC ne sera pas applicable aux Ndames ? C'est pas utra réducteur ? 
+
 from genererJeuDeDonnees import calculNbCouplesAutorises, creerRelationContrainte, genererJeuDeDonnees
 import time
 
-def withoutSupportPC(i,j,k,a,b, jeuDD):
+def withoutSupportPC(i,j,k,a,b, jeuDD): #Lise on a écrit la même chose
     """s'il existe un support c du couple (a,b) appartenant au domaine de
     la kième variable, retourne False ;
     sinon, retourne True"""
-
+    assert(jeuDD(i,j][a,b] == 1)#rajout Claire : l'assert me semble pas innutile , tu en pense quoi ?
     R_ik = jeuDD[i,k]
     cardinald_k = (R_ik.shape)[1]
     assert(cardinald_k <= 2)
@@ -27,15 +29,18 @@ def withoutSupportPC(i,j,k,a,b, jeuDD):
 
     else:
         return not (jeuDD[i,k,a,c]==1 and jeuDD[j,k,b,c]==1)
-
-
-
+    
+    #Offert parce que ça pourrait nous être utile : si Dk > 2, mettre la section à la ligne 25 et effacer la fin
+    #While (c < (cardinald_k - 1)) and not (jeuDD[i, k, a, c] == 1 and jeuDD[j, k, b, c] == 1)
+    #       c += 1
+    #return not (jeuDD[i, k, a, c] == 1 and jeuDD[j, k, b, c] == 1)       
+           
 
 def initializationPC(jeuDD):
     listPC = []
     nbVar = jeuDD.shape[0]
     listeDeZeros = [None] * nbVar
-    statusPC = [[listeDeZeros for k in range(0,2)] for i in range(0,nbVar)]
+    statusPC = [[listeDeZeros for k in range(0,2)] for i in range(0,nbVar)] #
     #!!!range de k -> à modifier
 
     for i in range(0,nbVar): #!!!Nos variables sont indexées à partir de 0
