@@ -27,7 +27,10 @@ def withoutSupportPC(i,j,k,a,b, jeuDD):
 
     else:
         return not (jeuDD[i,k,a,c]==1 and jeuDD[j,k,b,c]==1)
-
+    #CAS OU D > 2
+    #While (c < (cardinald_k - 1)) and not (jeuDD[i, k, a, c] == 1 and jeuDD[j, k, b, c] == 1)
+     #      c += 1
+    #return not (jeuDD[i, k, a, c] == 1 and jeuDD[j, k, b, c] == 1) """
 
 
 
