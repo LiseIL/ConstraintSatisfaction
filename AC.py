@@ -19,6 +19,9 @@ def WithoutSupport_AC(i,j,b):
     Di=[]
     for z in range(cardinalD):
         Di+=[z]
+        #Je ne savais pas comment récupérer les relations et les domaines dans le cas 
+        #général donc j’ai fait ça; est-ce faux?
+
 
     a=Di[0]
     while a<Di[-1] and jeu[i,j][a][b]==0:
@@ -41,6 +44,7 @@ def initialisation_AC():
     Dj = []
     for z in range(cardinalD):
         Dj += [z]
+#je ne comprend pas ce que ça signifie lorsqu’on dit ‘pour j tel que Cij existe’
 
     for i in range(1,n+1):
         for j in range(1,n+1):
