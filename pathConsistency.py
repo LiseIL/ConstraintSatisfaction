@@ -19,31 +19,24 @@ def withoutSupportPC(i,j,k,a,b, jeuDD):
     R_ik = jeuDD[i,k]
     cardinald_k = (R_ik.shape)[1]
     assert(cardinald_k <= 2)
-    c = 0
+    c = 0 #!!!Travailler avec domaine de Xk
 
     if (not (jeuDD[i,k,a,c]==1 and jeuDD[j,k,b,c]==1)) and cardinald_k==2:
         c=+1
-        return not (jeuDD[i, k, a, c]==1 and jeuDD[j, k, b, c]==1)
 
-    else:
-        return not (jeuDD[i,k,a,c]==1 and jeuDD[j,k,b,c]==1)
-    #CAS OU D > 2
-    #While (c < (cardinald_k - 1)) and not (jeuDD[i, k, a, c] == 1 and jeuDD[j, k, b, c] == 1)
-     #      c += 1
-    #return not (jeuDD[i, k, a, c] == 1 and jeuDD[j, k, b, c] == 1) """
+    return not (jeuDD[i, k, a, c]==1 and jeuDD[j, k, b, c]==1)
+
 
 
 
 def initializationPC(jeuDD):
-    #L’initialisation consiste à vérifier si pour chaque paire dans chaque relation possède un support pour 
-    #chacun des autres domaines.
     listPC = []
     nbVar = jeuDD.shape[0]
-    listeDeZeros = [None] * nbVar
-    statusPC = [[listeDeZeros for k in range(0,2)] for i in range(0,nbVar)]
+    listeDeNone = [None] * nbVar
+    statusPC = [copy([copy(listeDeNone) for k in range(0,2)]) for i in range(0, nbVar)]
     #!!!range de k -> à modifier
 
-    for i in range(0,nbVar): #!!!Nos variables sont indexées à partir de 0
+    for i in range(0,nbVar): #nos variables sont indexées à partir de 0
         for j in range(0, nbVar):
             if i!=j:
                 domaine_i = (jeuDD[i,j].shape)[0]
@@ -52,29 +45,29 @@ def initializationPC(jeuDD):
 
     for i in range(0,nbVar):
         for j in range(0, nbVar):
-            for k in range(0, 2):
+            for k in range(0, nbVar):
                 if i<j and k!=i and k!=j:
-                    relationContrainte = jeuDD[i,j]#.tolist()
+                    relationContrainte = jeuDD[i,j]
                     domaine_a = relationContrainte.shape[0]
                     domaine_b = relationContrainte.shape[1]
                     for a in range(0,domaine_a):
                         for b in range(0,domaine_b):
-                            #print("(i,j,k,a,b) =",(i,j,k,a,b))
-                            #print(withoutSupportPC(i,j,k,a,b, jeuDD))
-                            if withoutSupportPC(i,j,k,a,b, jeuDD):
-                                jeuDD[a,b]=0
-                                jeuDD[b,a]=0
+                            if jeuDD[i,j,a,b]==1: #!!!A verifier
 
-                                if not statusPC[i][a][j]:
-                                    listPC.append((i,a,j))
-                                    statusPC[i][a][j]=True
+                                if withoutSupportPC(i,j,k,a,b, jeuDD):
+                                    jeuDD[i,j,a,b]=0
+                                    jeuDD[j,i,b,a]=0
 
-                                if not statusPC[j][b][i]:
-                                    listPC.append((j, b ,i))
-                                    statusPC[j][b][i]=True
-    return (listPC, statusPC) #!!!A vérifier
+                                    if (statusPC[i][a][j] != None) and not statusPC[i][a][j]: #!!!A vérifier
+                                        listPC.append((i,a,j))
+                                        statusPC[i][a][j]=True
 
-def propagatePC(i,k,a, jeuDD, listPC, statusPC): #!!!A vérifier
+                                    if (statusPC[j][b][i] != None) and not statusPC[j][b][i]:
+                                        listPC.append((j, b ,i))
+                                        statusPC[j][b][i]=True
+    return (listPC, statusPC)
+
+def propagatePC(i,k,a, jeuDD, listPC, statusPC):
     assert(isinstance(i, int))
     assert (isinstance(k, int))
     #assert(isinstance(a, float)) #!!!A discuter
@@ -91,13 +84,13 @@ def propagatePC(i,k,a, jeuDD, listPC, statusPC): #!!!A vérifier
                         jeuDD[a, b] = 0
                         jeuDD[b, a] = 0
 
-                    if not statusPC[i][a][j]:
-                        listPC.append((i, a, j))
-                        statusPC[i][a][j] = True
+                        if not statusPC[i][a][j]:
+                            listPC.append((i, a, j))
+                            statusPC[i][a][j] = True
 
-                    if not statusPC[j][b][i]:
-                        listPC.append((j, b, i))
-                        statusPC[j][b][i] = True
+                        if not statusPC[j][b][i]:
+                            listPC.append((j, b, i))
+                            statusPC[j][b][i] = True
 
 def algorithmPC8(jeuDD):
     init = initializationPC(jeuDD)
@@ -112,17 +105,35 @@ def algorithmPC8(jeuDD):
         a = threeTuple[1]
         k = threeTuple[2]
 
-        statusPC[i][a][k] =False
+        statusPC[i][a][k] = False
         propagatePC(i,k,a, jeuDD, listPC, statusPC)
 
 
 
+###########################################################################################
+#Exemples d'application
+
+##Exemple 1
+#jeu = genererJeuDeDonnees(3,2,2,0.5)
+#print(jeu)
+# print(algorithmPC8(jeu))
+
+##Exemple 2
+R00 = [[0,0], [0,0]]
+R01 = [[1,0],[0,1]]
+R02 = [[0, 1], [1,0]]
+R10 = [[1,0],[0,1]]
+R12 = [[1,0], [1,1]]
+R20 = [[0, 1], [1, 0]]
+R21 = [[1,1],[0,1]]
+jeuExCours = np.array([[R00, R01, R02], [R10, R00, R12], [R20, R21, R00]])
+print("jeu original :\n",jeuExCours)
+
 debut = time.time()
-print(debut)
-jeu = genererJeuDeDonnees(4,2,6,0.8)
-#print("i=0 et k=2 \n",jeu[0,2])
-#print("j=1 et k=2 \n",jeu[1,2])
-#print(withoutSupportPC(0,1,2,0,0,jeu))
-print(algorithmPC8(jeu))
+algorithmPC8(jeuExCours)
 fin = time.time()
+
+print("\njeu après filtration :\n",jeuExCours)
+
+
 print("Durée d'exécution: ",fin-debut)
