@@ -35,6 +35,8 @@ def withoutSupportPC(i,j,k,a,b, jeuDD):
 
 
 def initializationPC(jeuDD):
+    #L’initialisation consiste à vérifier si pour chaque paire dans chaque relation possède un support pour 
+    #chacun des autres domaines.
     listPC = []
     nbVar = jeuDD.shape[0]
     listeDeZeros = [None] * nbVar
