@@ -18,7 +18,15 @@ def WithoutSupport_AC(i,j,b, jeuDD):
     return not(jeuDD[i,j,a,b]==1)
 
 def initialisation_AC(jeuDD):
-    n= jeuDD[0].shape[0]
+    if isinstance(jeuDD, np.ndarray):
+        liste = []
+        liste2 = []
+        for i in range(jeuDD.shape[2]):
+            liste2 += [i]
+        for i in range(jeuDD.shape[0]):
+            liste += [copy(liste2)]
+        jeuDD = (jeuDD, liste)
+    n = jeuDD[0].shape[0]
     List_AC=[]
     Status_AC=[False]*n
     
@@ -52,8 +60,8 @@ def propager_AC(i,List_AC,Status_AC,jeuDD):
 
 def algo_AC8(jeuDD):
     init = initialisation_AC(jeuDD)
-    list_AC = init[0]
-    status_AC = init[1]          
+    List_AC = init[0]
+    Status_AC = init[1]          
     while List_AC!=[]:
         i = List_AC[0]
         List_AC=List_AC.remove(i)
