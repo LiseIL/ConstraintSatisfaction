@@ -26,7 +26,7 @@ def initialisation_AC(jeuDD):
     for i in range(n): 
         for j in range(n): 
             relation_ij = jeuDD[0][i,j]
-            if np.array_equal(jeuDD[0][i,j],np.zeros(relation_ij.shape)):
+            if not(np.array_equal(jeuDD[0][i,j],np.zeros(relation_ij.shape))):
             
                 Dj = jeuDD[1][j]
                 for b in Dj: 
@@ -41,7 +41,7 @@ def propager_AC(i,List_AC,Status_AC,jeuDD):
     n= jeuDD[0].shape[0]
     for j in range(n): 
             relation_ij = jeuDD[0][i,j]
-            if np.array_equal(jeuDD[i,j],np.zeros(relation_ij.shape)):
+            if not(np.array_equal(jeuDD[i,j],np.zeros(relation_ij.shape))):
                 Dj = jeuDD[1][j]
                 for b in Dj: 
                     if WithoutSupport_AC(i,j,b, jeuDD):
