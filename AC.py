@@ -4,6 +4,7 @@ __Creationdate__ = '04/11/18'
 
 #######################ALGORITHME AC#####################
 from genererJeuDeDonnees import*
+from copy import *
 
 def WithoutSupport_AC(i,j,b, jeuDD):
     #i et j sont des entiers, b est une valeur. Renvoie un booleen
