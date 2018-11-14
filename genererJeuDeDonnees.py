@@ -54,14 +54,17 @@ def creerRelationContrainte(cardinalD, tauxSatisf):
 
 def genererJeuDeDonnees(nbVariables, cardinalD, nbContraintes, tauxSatisf):
     #Génère une matrice contenant 'nbContraintes' relations de contraintes entre 'nbVariables' variables.
-    #Les variables peuvent prendre les valeurs entières appartenant à l'ensemble [0, cardinalD -1]
+    #Les variables sont les valeurs entières appartenant à l'ensemble [0, cardinalD -1]
     #Chaque matrice relation de contrainte a le même taux de satisfiabilité égal à 'tauxSatisf'
 
-    listeDeZeros = [0]*cardinalD
-    matriceDeZeros = [listeDeZeros for i in range(cardinalD)]
-    jeuDeDonnees = [[matriceDeZeros for i in range(nbVariables)] for i in range(nbVariables)]
+    ListeDeUns = [1]*cardinalD
+    matriceDeUns = [ListeDeUns for i in range(cardinalD)]
+    jeuDeDonnees = [[matriceDeUns for i in range(nbVariables)] for i in range(nbVariables)]
     listeContraintesCrees = []
     nbContraintesCrees = 0
+
+    for i in range(0, nbVariables):
+        jeuDeDonnees[i][i] = np.identity(cardinalD)
 
     while nbContraintesCrees < nbContraintes :
         i = randint(0,nbVariables-1)
@@ -76,9 +79,12 @@ def genererJeuDeDonnees(nbVariables, cardinalD, nbContraintes, tauxSatisf):
             listeContraintesCrees += [(j,i)]
 
             relationContrainte = creerRelationContrainte(cardinalD,tauxSatisf)
-
             jeuDeDonnees[i][j] = deepcopy(relationContrainte)
-            jeuDeDonnees[j][i] = deepcopy(relationContrainte)
+
+            #jeuDeDonnees[j][i] = transposée(jeuDeDonnees[i][j])
+            npRelationContrainte = np.array(deepcopy(relationContrainte))
+            npRelationContrainteTransposee = npRelationContrainte.transpose()
+            jeuDeDonnees[j][i] = npRelationContrainteTransposee.tolist()
 
             nbContraintesCrees +=1
 
