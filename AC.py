@@ -5,6 +5,7 @@ __Creationdate__ = '04/11/18'
 #######################ALGORITHME AC#####################
 from genererJeuDeDonnees import*
 from copy import *
+import numpy as np
 
 def WithoutSupport_AC(i,j,b, jeuDD):
     #i et j sont des entiers, b est une valeur. Renvoie un booleen
@@ -44,7 +45,7 @@ def initialisation_AC(jeuDD):
                         if not(Status_AC[j]):
                             List_AC+=[j]
                             Status_AC[j]=True
-    return(list_AC, Status_AC)
+    return(List_AC, Status_AC)
 
 def propager_AC(i,List_AC,Status_AC,jeuDD):
     n= jeuDD[0].shape[0]
