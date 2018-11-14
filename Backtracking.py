@@ -82,7 +82,8 @@ def BT(solution,Xappel,JeuDeDonnee):
         print(solution)
         return True
 #cas terminal
-    for i in range (JeuDeDonnee[0.0].shape[0]):
+    for i in range (JeuDeDonnee[0,0].shape[0]):
+      #dans le cas où le domaine de chaque variable est identique########################################################
         if compatibleAllBefore(Xappel,i,JeuDeDonnee,solution):
             solution[Xappel]=i
             if BT(solution,Xappel+1,JeuDeDonnee):
