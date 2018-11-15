@@ -34,7 +34,7 @@ def initialisation_AC(jeuDD):
     for i in range(n): 
         for j in range(n): 
             relation_ij = jeuDD[0][i, j]
-            if not(np.array_equal(jeuDD[0][i, j], np.ones(relation_ij.shape))
+            if not(np.array_equal(jeuDD[0][i, j], np.ones(relation_ij.shape))):
                 Dj = jeuDD[1][j]
                 if len(Dj) == 0:
                     return 'EmptyDomain'   
@@ -65,14 +65,15 @@ def propager_AC(i, List_AC, Status_AC, jeuDD):
 
 def algo_AC8(jeuDD):
     init = initialisation_AC(jeuDD)
-    if init == 'EmptyDomain':
+    if isinstance(init, str):
         return init
-    List_AC = init[0]
-    Status_AC = init[1]          
-    while List_AC != []:
-        i = List_AC[0]
-        List_AC = List_AC.remove(i)
-        Status_AC[i] = False
-        a = propager_AC(i, List_AC, Status_AC, jeuDD)
-        if a == 'EmptyDomain':
-            return a
+    elif isinstance(init, tuple)
+        List_AC = init[0]
+        Status_AC = init[1]          
+        while List_AC != []:
+            i = List_AC[0]
+            List_AC = List_AC.remove(i)
+            Status_AC[i] = False
+            a = propager_AC(i, List_AC, Status_AC, jeuDD)
+            if a == 'EmptyDomain':
+                return a
