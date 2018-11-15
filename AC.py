@@ -12,6 +12,8 @@ def WithoutSupport_AC(i,j,b, jeuDD):
     #Si b dans Dj possède un support dans Di, la fonction renvoie False
     #Sinon elle renvoie True
     domaine_i = jeuDD[1][i]
+    if len(domaine_i) == 0:
+        return 'EmptyDomain'
     a = domaine_i[0]
     while a < domaine_i[-1] and jeuDD[i, j, a, b] == 0:
         a = domaine_i[domaine_i.index(a) + 1]
@@ -34,8 +36,12 @@ def initialisation_AC(jeuDD):
             relation_ij = jeuDD[0][i, j]
             if not(np.array_equal(jeuDD[0][i, j], np.ones(relation_ij.shape))
                 Dj = jeuDD[1][j]
-                for b in Dj: 
+                if len(Dj) == 0:
+                    return 'EmptyDomain'   
+                for b in Dj:
                     if WithoutSupport_AC(i, j, b, jeuDD):
+                        if WithoutSupport_AC(i, j, b, jeuDD) == 'EmptyDomain':
+                            return 'EmptyDomain', i
                         Dj.remove(b)
                         if not(Status_AC[j]):
                             List_AC += [j]
@@ -48,6 +54,8 @@ def propager_AC(i, List_AC, Status_AC, jeuDD):
             relation_ij = jeuDD[0][i, j]
             if not(np.array_equal(jeuDD[i, j], np.ones(relation_ij.shape))):
                 Dj = jeuDD[1][j]
+                if len(Dj) == 0:
+                   return 'EmptyDomain'
                 for b in Dj: 
                     if WithoutSupport_AC(i, j, b, jeuDD):
                         Dj.remove(b)
@@ -57,11 +65,14 @@ def propager_AC(i, List_AC, Status_AC, jeuDD):
 
 def algo_AC8(jeuDD):
     init = initialisation_AC(jeuDD)
+    if init == 'EmptyDomain':
+        return init
     List_AC = init[0]
     Status_AC = init[1]          
     while List_AC != []:
         i = List_AC[0]
         List_AC = List_AC.remove(i)
         Status_AC[i] = False
-        propager_AC(i, List_AC, Status_AC, jeuDD)
-
+        a = propager_AC(i, List_AC, Status_AC, jeuDD)
+        if a == 'EmptyDomain':
+            return a
