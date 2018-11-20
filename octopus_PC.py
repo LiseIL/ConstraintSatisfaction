@@ -1,7 +1,7 @@
 from copy import *
 import numpy as np
-from path_consistency import *
-from backtraking import *
+from pathConsistency import *
+from Backtracking import *
 
 
 def octopus(Xappel, domaineSolution, jeuDD):
