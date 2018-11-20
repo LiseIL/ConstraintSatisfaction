@@ -1,6 +1,6 @@
 from copy import *
 import numpy as np
-from path_consistency import *
+from pathConsistency import *
 from csp import *
 
 
