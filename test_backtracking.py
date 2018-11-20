@@ -1,6 +1,6 @@
 import unittest
-from backtraking import *
-from jeuxdedonnees import *
+from Backtracking import *
+from genererJeuDeDonnees import *
 from copy import *
 
 
