@@ -52,10 +52,20 @@ def creerRelationContrainte(cardinalD, tauxSatisf):
 
     return relationContrainte.tolist()
 
+def nbContraintesMax(nbVariables):
+    nbCtrtMax = 0.5 * nbVariables * (nbVariables-1)
+    return nbCtrtMax
+
 def genererJeuDeDonnees(nbVariables, cardinalD, nbContraintes, tauxSatisf):
     #Génère une matrice contenant 'nbContraintes' relations de contraintes entre 'nbVariables' variables.
     #Les variables sont les valeurs entières appartenant à l'ensemble [0, cardinalD -1]
     #Chaque matrice relation de contrainte a le même taux de satisfiabilité égal à 'tauxSatisf'
+    nbCtrtMax = nbContraintesMax(nbVariables)
+    print(nbCtrtMax)
+
+    while nbContraintes > nbCtrtMax:
+        newNbContrainte = int(input(("Nombre de contraintes trop élevé. Entrez un nombre de contraintes entier, inférieur ou égal à", nbCtrtMax, ":")))
+        nbContraintes = newNbContrainte
 
     ListeDeUns = [1]*cardinalD
     matriceDeUns = [ListeDeUns for i in range(cardinalD)]
