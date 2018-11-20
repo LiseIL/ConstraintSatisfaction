@@ -1,6 +1,6 @@
 import unittest
-from path_consistency import *
-from jeuxdedonnees import *
+from pathConsistency import *
+from genererJeuDeDonnees import *
 from copy import *
 
 
