@@ -1,8 +1,10 @@
+__Filename__ = 'octopus_PC.py'
+
 from copy import *
 import numpy as np
 from pathConsistency import *
 from Backtracking import *
-
+from genererJeuDeDonnees import*
 
 def octopus(Xappel, domaineSolution, jeuDD):
     if Xappel >= jeuDD.shape[0] :
@@ -45,3 +47,4 @@ def compatibleAllBeforeOctopus(sousJeuDD, Xappel):
                     return False
 
     return True
+
