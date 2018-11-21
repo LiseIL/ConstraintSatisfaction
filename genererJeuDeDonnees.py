@@ -1,4 +1,4 @@
-# genererJeuDeDonnees created by isnel at 01/10/18
+# genererJeuDeDonnees.py
 
 import numpy as np
 from random import *
@@ -102,10 +102,12 @@ def genererJeuDeDonnees(nbVariables, cardinalD, nbContraintes, tauxSatisf):
 
 #########################################################################
 #Quelques tests
-jeu = genererJeuDeDonnees(4,4,10,0.24)
-print(len(jeu[1]))
-print(jeu[0,0])
-print(jeu[1,0])
-print(jeu[2,0])
-print(jeu[1,1])
-print(jeu[1,2])
+#jeu = genererJeuDeDonnees(4,4,6,0.24)
+#print(jeu)
+#print(jeu.shape[0])
+#print(len(jeu[1]))
+#print(jeu[0,0])
+#print(jeu[1,0])
+#print(jeu[2,0])
+#print(jeu[1,1])
+#print(jeu[1,2])
