@@ -1,4 +1,4 @@
-# Created by isnel at 29/10/18
+__Filename__ = 'pathConsistency.py'
 
 # Pour PC, vous pourrez simplifier la problématique
 # en considérant que dans le cas de son application
@@ -8,8 +8,10 @@
 # contrairement au cas général où la taille des domaine
 # est  a priori quelconque.
 
-from genererJeuDeDonnees import calculNbCouplesAutorises, creerRelationContrainte, genererJeuDeDonnees
+from genererJeuDeDonnees import*
 import time
+import numpy as np
+
 
 def withoutSupportPC(i,j,k,a,b, jeuDD):
     """s'il existe un support c du couple (a,b) appartenant au domaine de
@@ -119,21 +121,21 @@ def algorithmPC8(jeuDD):
 # print(algorithmPC8(jeu))
 
 ##Exemple 2
-R00 = [[0,0], [0,0]]
-R01 = [[1,0],[0,1]]
-R02 = [[0, 1], [1,0]]
-R10 = [[1,0],[0,1]]
-R12 = [[1,0], [1,1]]
-R20 = [[0, 1], [1, 0]]
-R21 = [[1,1],[0,1]]
-jeuExCours = np.array([[R00, R01, R02], [R10, R00, R12], [R20, R21, R00]])
-print("jeu original :\n",jeuExCours)
+#R00 = [[0,0], [0,0]]
+#R01 = [[1,0],[0,1]]
+#R02 = [[0, 1], [1,0]]
+#R10 = [[1,0],[0,1]]
+#R12 = [[1,0], [1,1]]
+#R20 = [[0, 1], [1, 0]]
+#R21 = [[1,1],[0,1]]
+#jeuExCours = np.array([[R00, R01, R02], [R10, R00, R12], [R20, R21, R00]])
+#print("jeu original :\n",jeuExCours)
 
-debut = time.time()
-algorithmPC8(jeuExCours)
-fin = time.time()
+#debut = time.time()
+#algorithmPC8(jeuExCours)
+#fin = time.time()
 
-print("\njeu après filtration :\n",jeuExCours)
+#print("\njeu après filtration :\n",jeuExCours)
 
 
-print("Durée d'exécution: ",fin-debut)
+#print("Durée d'exécution: ",fin-debut)
