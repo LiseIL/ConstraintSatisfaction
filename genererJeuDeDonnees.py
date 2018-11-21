@@ -61,7 +61,6 @@ def genererJeuDeDonnees(nbVariables, cardinalD, nbContraintes, tauxSatisf):
     #Les variables sont les valeurs entières appartenant à l'ensemble [0, cardinalD -1]
     #Chaque matrice relation de contrainte a le même taux de satisfiabilité égal à 'tauxSatisf'
     nbCtrtMax = nbContraintesMax(nbVariables)
-    print(nbCtrtMax)
 
     while nbContraintes > nbCtrtMax:
         newNbContrainte = int(input(("Nombre de contraintes trop élevé. Entrez un nombre de contraintes entier, inférieur ou égal à", nbCtrtMax, ":")))
