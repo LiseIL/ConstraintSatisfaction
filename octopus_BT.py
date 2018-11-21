@@ -1,7 +1,9 @@
+__Filename__ = 'octopus_BT.py'
+
 from copy import *
 import numpy as np
 from pathConsistency import *
-from csp import *
+#from csp import *
 
 
 def octopus(Xappel, domaineSolution, jeuDD):
