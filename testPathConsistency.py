@@ -1,3 +1,6 @@
+__Filename__ = 'testPathConsistency.py'
+
+
 import unittest
 from pathConsistency import *
 from genererJeuDeDonnees import *
