@@ -1,6 +1,4 @@
-__author__ = 'Coruzzi Nicolas'
-__Filename__ = 'testgJDD.py'
-__Creationdate__ = '17/11/18'
+__Filename__ = 'testGJDD.py'
 
 import unittest
 from genererJeuDeDonnees import *
