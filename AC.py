@@ -1,6 +1,5 @@
-__author__ = 'Coruzzi Nicolas'
 __Filename__ = 'AC.py'
-__Creationdate__ = '04/11/18'
+
 
 #######################ALGORITHME AC#####################
 from copy import *
