@@ -1,5 +1,4 @@
-# NDames created by isnel at 30/09/18
-
+__Filename__ = 'NDames.py'
 #from csp import *
 import numpy as np
 from random import *
@@ -67,36 +66,36 @@ def ndames(n):
    #en gros : on regarde les 2 première colonnes et ont regarde quels couples de valeurs sont possible et ainsi de suite
    #pour chaque couple de colonnes.
 
-A = ndames(5)
+#A = ndames(5)
 #D = domaine(4)
 #A = XiXjContraintes(D,D,0,2)
-print(A[0,0])
+#print(A[0,0])
 
-M=[[0]*3]*3
-N=[[1,2],[3,4]]
+#M=[[0]*3]*3
+#N=[[1,2],[3,4]]
 
-print(N[1][0])
+#print(N[1][0])
 
-N[1][0]=0
-print(N)
+#N[1][0]=0
+#print(N)
 
-N[1]=[3,5]
-print(N)
+#N[1]=[3,5]
+#print(N)
 
-print("\n")
-P=[[[[0, 1], [2, 3]], [[4, 5], [6, 7]]], [[[0, 1], [2, 3]], [[12, 13], [14, 15]]]]
-P[0][1] = [[0,-1],[-2,-3]]
-print(P[0])
-P[1][0] = [[0,-1],[-2,-3]]
-print(P)
+#print("\n")
+#P=[[[[0, 1], [2, 3]], [[4, 5], [6, 7]]], [[[0, 1], [2, 3]], [[12, 13], [14, 15]]]]
+#P[0][1] = [[0,-1],[-2,-3]]
+#print(P[0])
+#P[1][0] = [[0,-1],[-2,-3]]
+#print(P)
 
-O=[[[[0, 0], [0, 0]], [[0, 0], [0, 0]]], [[[0, 0], [0, 0]], [[0, 0], [0, 0]]]]
-(O[0])[1]= [[0,-1],[-2,-3]]
-print(O)
-print("\n Test")
-Test=[[[0,0] for _ in range(2)] for _ in range(2)]
-print(Test)
-Test1 = [[[[0]*2 for _ in range(2)] for _ in range(2)]for _ in range(2)]
-print(Test1)
-Test1[0][0] = [[1,2],[3,4]]
-print(Test1)
+#O=[[[[0, 0], [0, 0]], [[0, 0], [0, 0]]], [[[0, 0], [0, 0]], [[0, 0], [0, 0]]]]
+#(O[0])[1]= [[0,-1],[-2,-3]]
+#print(O)
+#print("\n Test")
+#Test=[[[0,0] for _ in range(2)] for _ in range(2)]
+#print(Test)
+#Test1 = [[[[0]*2 for _ in range(2)] for _ in range(2)]for _ in range(2)]
+#print(Test1)
+#Test1[0][0] = [[1,2],[3,4]]
+#print(Test1)
