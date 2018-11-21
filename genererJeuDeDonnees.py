@@ -1,4 +1,4 @@
-# genererJeuDeDonnees.py
+__Filename__ = 'genererJeuDeDonnees.py'
 
 import numpy as np
 from random import *
