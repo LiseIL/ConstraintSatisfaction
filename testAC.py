@@ -1,3 +1,5 @@
+__Filename__ = 'testAC.py'
+
 import unittest
 from AC import *
 
