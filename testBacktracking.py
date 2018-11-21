@@ -1,3 +1,6 @@
+__Filename__ = 'testBacktracking.py'
+
+
 import unittest
 from Backtracking import *
 from genererJeuDeDonnees import *
