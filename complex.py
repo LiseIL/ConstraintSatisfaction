@@ -37,12 +37,18 @@ m1 = m1 + [ts]
 
 plt.figure()
 
+plt.annotate('temps de calcul des algorithmes Backtracking et Octopus',fontsize=12, xy = (0.13,0.95),
+             xycoords='figure fraction', xytext = (0.13,0.95),
+             arrowprops = {'facecolor': 'white', 'edgecolor': 'white',
+                           'width': 15, 'headwidth': 30},
+             bbox=dict(boxstyle="round,pad=0.5", facecolor="white",
+                       edgecolor="firebrick", lw=1,))
+
 plt.plot(l2,l1,linewidth=10,label='Backtracking')
 plt.plot(m2,m1,linewidth=10,label='Octopus')
 plt.legend()
 plt.ylabel('temps de calcul (en secondes)')
-plt.xlabel('espace arbitraire')
+plt.xticks([], [])
 plt.savefig('temps de calcul Backtracking & Octopus')
-plt.title('temps de calcul des algorithmes Backtracking et Octopus')
 
 plt.show()
