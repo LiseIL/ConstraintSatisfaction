@@ -10,7 +10,8 @@ __Filename__ = 'Backtracking.py'
 #solution est une liste de n 0
 
 def BT(solution,Xappel,JeuDeDonnee):
-#renvoie True et une liste contenant une solution si elle existe, et False sinon
+#renvoie True s'il existe une solution pour le CSP "JeuDeDonnee", et False sinon
+#et affiche la solution sous forme de liste
     if Xappel>=JeuDeDonnee.shape[0]:
         print(solution)
         return True
