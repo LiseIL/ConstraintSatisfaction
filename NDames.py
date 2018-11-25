@@ -55,7 +55,7 @@ def ndames(n):
 
                #F[i,j] = Cij
            else:
-               Cij = np.zeros([len(D), len(D)])
+               Cij = np.identity(len(D))
            l += [Cij]
        m += [l]
    F = np.array(m)
