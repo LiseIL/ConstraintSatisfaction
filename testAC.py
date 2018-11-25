@@ -2,7 +2,7 @@ __Filename__ = 'testAC.py'
 
 import unittest
 from AC import *
-
+from NDames import *
 
 class TestAC(unittest.TestCase):
     def testOneSolution(self):
@@ -50,4 +50,11 @@ class TestAC(unittest.TestCase):
         expected = [[0, 1, 2, 3], [0, 1, 2, 3], [0, 1, 2, 3]]
         self.assertTrue(np.array_equal(jeu1, jeu2[0]) and jeu2[1] == expected)
 
+    def testNDames(self):
+        jeu1 = ndames(4)
+        jeu2 = algo_AC8(jeu1)
+        expected = [[0, 1, 2, 3]]*4
+        self.assertTrue(jeu2[1] == expected)
 
+if __name__ == '__main__':
+    unittest.main()
