@@ -1,13 +1,5 @@
 __Filename__ = 'BTAC.py'
 
-###################
-################### ATTENTION
-###################
-###################CE N EST PAS
-###################
-###################ENCORE FAIT !
-###################
-
 from NDames import*
 from copy import *
 import numpy as np
@@ -131,4 +123,5 @@ def algo_AC8(jeuDD):
             if isinstance(a, tuple) and a[0] == 'EmptyDomain':
                 return a
     return jeuDD
+
 
