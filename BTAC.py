@@ -1,12 +1,4 @@
-__Filename__ = 'BT+AC.py'
-
-###################
-################### ATTENTION
-###################
-###################CE N EST PAS
-###################
-###################ENCORE FAIT !
-###################
+__Filename__ = 'BTAC.py'
 
 from NDames import*
 from copy import *
@@ -14,38 +6,59 @@ import numpy as np
 
 ##################Algorithmes du Backtracking################
 
-#dans JeuDeDonne, les variables sont indexées de X0 à Xn, ces dernières peuvent prendre des valeurs entières à partir de 0
-#Xappel est initialisé à 0 généralement
-#solution est une liste de n 0
+# dans JeuDeDonne, les variables sont indexées de X0 à Xn, ces dernières peuvent prendre des valeurs entières à partir
+#  de 0
+# Xappel est initialisé à 0 généralement
+# solution est une liste de n 0
 
-def BT(solution,Xappel,JeuDeDonnee):
-#renvoie True et une liste contenant une solution si elle existe, et False sinon
-    if Xappel>=JeuDeDonnee.shape[0]:
+
+def BT(solution, Xappel, JeuDeDonnee):
+    # renvoie True et une liste contenant une solution si elle existe, et False sinon
+    if isinstance(JeuDeDonnee, np.ndarray):
+        liste = []
+        liste2 = []
+        for i in range(JeuDeDonnee.shape[2]):
+            liste2 += [i]
+        for i in range(JeuDeDonnee.shape[0]):
+            liste += [copy(liste2)]
+        JeuDeDonnee = tuple((JeuDeDonnee, liste))
+    valeurs = []
+    for i in range(Xappel):
+        valeurs += [[solution[i]]]
+    valeurs += JeuDeDonnee[1][Xappel:]
+    print(valeurs)
+    JDD = algo_AC8((JeuDeDonnee[0], valeurs))
+    print(JDD)
+    if isinstance(JDD[0], str):
+        return False
+    if Xappel >= len(valeurs):
+        # cas terminal
         print(solution)
         return True
-#cas terminal
-    for i in range (JeuDeDonnee[0,0].shape[0]):
-      #dans le cas où le domaine de chaque variable est identique####
-        if compatibleAllBefore(Xappel,i,JeuDeDonnee,solution):
-            solution[Xappel]=i
-            if BT(solution,Xappel+1,JeuDeDonnee):
-#appel recursif de la fonction BT
+    for i in valeurs[Xappel]:
+        valeurs2 = deepcopy(valeurs)
+        if compatibleAllBefore(Xappel, i, JDD, solution):
+            solution[Xappel] = i
+            if BT(solution, Xappel + 1, (JDD[0], valeurs2)):
+                # appel recursif de la fonction BT
                 return True
     return False
 
-def compatibleAllBefore(Xi,i,JeuDeDonnee,solution):
-#renvoie True si la valeur de Xi est compatible avec les contraintes du problème
-    for Xk in range (0,Xi):
-        if JeuDeDonnee[Xk,Xi][solution[Xk]][i]==0:
+
+def compatibleAllBefore(Xi, i, JeuDeDonnee, solution):
+    # renvoie True si la valeur de Xi est compatible avec les contraintes du problème
+    for Xk in range(0, Xi):
+        if JeuDeDonnee[0][Xk, Xi][solution[Xk]][i] == 0:
             return False
     return True
 
-#######################ALGORITHME AC#####################
+####################### ALGORITHME AC #####################
+
 
 def WithoutSupport_AC(i, j, b, jeuDD):
-    #i et j sont des entiers, b est une valeur. Renvoie un booleen
-    #Si b dans Dj possède un support dans Di, la fonction renvoie False
-    #Sinon elle renvoie True
+    # i et j sont des entiers, b est une valeur. Renvoie un booleen
+    # Si b dans Dj possède un support dans Di, la fonction renvoie False
+    # Sinon elle renvoie True
     domaine_i = jeuDD[1][i]
     if len(domaine_i) == 0:
         return 'EmptyDomain', i
@@ -56,14 +69,6 @@ def WithoutSupport_AC(i, j, b, jeuDD):
 
 
 def initialisation_AC(jeuDD):
-    if isinstance(jeuDD, np.ndarray):
-        liste = []
-        liste2 = []
-        for i in range(jeuDD.shape[2]):
-            liste2 += [i]
-        for i in range(jeuDD.shape[0]):
-            liste += [copy(liste2)]
-        jeuDD = tuple((jeuDD, liste))
     n = jeuDD[0].shape[0]
     List_AC = []
     Status_AC = [False]*n   
@@ -118,4 +123,5 @@ def algo_AC8(jeuDD):
             if isinstance(a, tuple) and a[0] == 'EmptyDomain':
                 return a
     return jeuDD
+
 
