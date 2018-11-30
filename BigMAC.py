@@ -5,6 +5,7 @@ import numpy as np
 from pathConsistency import *
 from Backtracking import *
 from genererJeuDeDonnees import*
+from AC import *
 
 def octopus(Xappel, domaineSolution, jeuDD):
     if Xappel >= jeuDD.shape[0] :
@@ -40,6 +41,7 @@ def compatibleAllBeforeOctopus(sousJeuDD, Xappel):
         return True
     else:
         algorithmPC8(sousJeuDD)
+        algo_AC8(sousJeuDD)
         for variable in range(sousJeuDD.shape[0]-1):
             if variable != Xappel:
                 if np.array_equal(sousJeuDD[Xappel, variable] , np.zeros([sousJeuDD[Xappel, variable].shape[0], sousJeuDD[Xappel, variable].shape[0]])) or np.array_equal(sousJeuDD[variable, Xappel], np.zeros([sousJeuDD[Xappel, variable].shape[0], sousJeuDD[Xappel, variable].shape[0]])):
