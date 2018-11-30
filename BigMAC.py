@@ -35,6 +35,7 @@ def transformeDomaineTuple(n):
             list += [[domaine[i], domaine[i+1]]]
     return list
 
+
 def compatibleAllBeforeOctopus(sousJeuDD, Xappel, domaineSolution):
 
     if sousJeuDD.shape[0] == 1:
@@ -60,3 +61,4 @@ def sousJeu(domaineSolution, Xappel, jeuDD):
             new[variable, X] = deepcopy(jeuDD[variable, X, domaineSolution[variable][0]:domaineSolution[variable][1]+1, domaineSolution[X][0]:domaineSolution[X][1]+1])
             new[X, variable] = deepcopy(jeuDD[X, variable, domaineSolution[X][0]:domaineSolution[X][1]+1, domaineSolution[variable][0]:domaineSolution[variable][1]+1])
     return new
+
