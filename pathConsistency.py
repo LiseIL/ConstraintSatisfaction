@@ -78,7 +78,7 @@ def propagatePC(i,k,a, jeuDD, listPC, statusPC):
     relationContrainte = jeuDD[i, k]
     domaine_b = relationContrainte.shape[1]
 
-    for j in range(0, nbVar):
+    for j in range(1, nbVar):
         if j!=i and j!=k:
             for b in range(0,domaine_b):
                 if jeuDD[i, j, a ,b]==1:
