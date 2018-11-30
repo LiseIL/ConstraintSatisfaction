@@ -14,7 +14,7 @@ def octopus(Xappel, domaineSolution, jeuDD):
     for tuple in domainetuple:
         domaineSolution[Xappel] = tuple
         sousJeuDD = sousJeu(domaineSolution, Xappel, jeuDD)
-        if compatibleAllBeforeOctopus(sousJeuDD, Xappel):
+        if compatibleAllBeforeOctopus(sousJeuDD, Xappel, domaineSolution):
             if octopus(Xappel+1, domaineSolution, deepcopy(jeuDD)):
                 return True
     return False
@@ -35,13 +35,16 @@ def transformeDomaineTuple(n):
             list += [[domaine[i], domaine[i+1]]]
     return list
 
-def compatibleAllBeforeOctopus(sousJeuDD, Xappel):
+def compatibleAllBeforeOctopus(sousJeuDD, Xappel, domaineSolution):
 
     if sousJeuDD.shape[0] == 1:
         return True
     else:
         algorithmPC8(sousJeuDD)
-        algo_AC8(sousJeuDD)
+        valeurs = deepcopy(domaineSolution)
+        sousJeuDD = (algo_AC8((sousJeuDD, valeurs[:Xappel + 1])))[0]
+        if isinstance(sousJeuDD, str): # cas où un des domaines est vide
+            return False
         for variable in range(sousJeuDD.shape[0]-1):
             if variable != Xappel:
                 if np.array_equal(sousJeuDD[Xappel, variable] , np.zeros([sousJeuDD[Xappel, variable].shape[0], sousJeuDD[Xappel, variable].shape[0]])) or np.array_equal(sousJeuDD[variable, Xappel], np.zeros([sousJeuDD[Xappel, variable].shape[0], sousJeuDD[Xappel, variable].shape[0]])):
