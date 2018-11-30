@@ -39,11 +39,10 @@ def compatibleAllBeforeOctopus(sousJeuDD, Xappel):
     if sousJeuDD.shape[0] == 1:
         return True
     else:
-        jeu = deepcopy(sousJeuDD)
-        algorithmPC8(jeu) #est-ce que ça ne rajoute pas une complexcité importante ?
+        algorithmPC8(sousJeuDD)
         for variable in range(sousJeuDD.shape[0]-1):
             if variable != Xappel:
-                if np.array_equal(jeu[Xappel, variable] , np.zeros([sousJeuDD[Xappel, variable].shape[0], sousJeuDD[Xappel, variable].shape[0]])) or np.array_equal(jeu[variable, Xappel], np.zeros([sousJeuDD[Xappel, variable].shape[0], sousJeuDD[Xappel, variable].shape[0]])):
+                if np.array_equal(sousJeuDD[Xappel, variable] , np.zeros([sousJeuDD[Xappel, variable].shape[0], sousJeuDD[Xappel, variable].shape[0]])) or np.array_equal(sousJeuDD[variable, Xappel], np.zeros([sousJeuDD[Xappel, variable].shape[0], sousJeuDD[Xappel, variable].shape[0]])):
                     return False
 
     return True
