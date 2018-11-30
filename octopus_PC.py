@@ -12,7 +12,7 @@ def octopus(Xappel, domaineSolution, jeuDD):
     domainetuple = transformeDomaineTuple(jeuDD[Xappel, 0].shape[0])
     for tuple in domainetuple:
         domaineSolution[Xappel] = tuple
-        sousJeuDD = copy(jeuDD[0:Xappel+1,0:Xappel+1, tuple[0]:tuple[1]+1, tuple[0]:tuple[1]+1])
+        sousJeuDD = sousJeu(domaineSolution, Xappel, jeuDD)
         if compatibleAllBeforeOctopus(sousJeuDD, Xappel):
             if octopus(Xappel+1, domaineSolution, deepcopy(jeuDD)):
                 return True
