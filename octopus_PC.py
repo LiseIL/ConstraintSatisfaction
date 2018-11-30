@@ -51,12 +51,8 @@ def compatibleAllBeforeOctopus(sousJeuDD, Xappel):
 
 def sousJeu(domaineSolution, Xappel, jeuDD):
     new = np.zeros([Xappel+1, Xappel+1, 2,2])
-    for i in range(Xappel+1):
-        for j in range(Xappel+1):
-            new[i,j] = np.identity(2)
-            new[j,i] = np.identity(2)
-    for variable in range(Xappel):
-        new[variable, Xappel] = deepcopy(jeuDD[variable, Xappel, domaineSolution[variable][0]:domaineSolution[variable][1]+1, domaineSolution[Xappel][0]:domaineSolution[Xappel][1]+1])
-        new[Xappel, variable] = deepcopy(jeuDD[Xappel, variable, domaineSolution[Xappel][0]:domaineSolution[Xappel][1]+1, domaineSolution[variable][0]:domaineSolution[variable][1]+1])
-
+    for X in range(Xappel+1):
+        for variable in range(Xappel+1):
+            new[variable, X] = deepcopy(jeuDD[variable, X, domaineSolution[variable][0]:domaineSolution[variable][1]+1, domaineSolution[X][0]:domaineSolution[X][1]+1])
+            new[X, variable] = deepcopy(jeuDD[X, variable, domaineSolution[X][0]:domaineSolution[X][1]+1, domaineSolution[variable][0]:domaineSolution[variable][1]+1])
     return new
