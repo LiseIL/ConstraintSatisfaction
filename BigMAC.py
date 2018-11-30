@@ -5,7 +5,7 @@ import numpy as np
 from pathConsistency import *
 from Backtracking import *
 from genererJeuDeDonnees import*
-from AC import *
+from AC2 import *
 
 def octopus(Xappel, domaineSolution, jeuDD):
     if Xappel >= jeuDD.shape[0] :
