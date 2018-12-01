@@ -12,7 +12,7 @@ import numpy as np
 # solution est une liste de n 0
 
 
-def BT(solution, Xappel, JeuDeDonnee):
+def BTAC(solution, Xappel, JeuDeDonnee):
     # renvoie True et une liste contenant une solution si elle existe, et False sinon
     if isinstance(JeuDeDonnee, np.ndarray):
         liste = []
@@ -39,7 +39,7 @@ def BT(solution, Xappel, JeuDeDonnee):
         valeurs2 = deepcopy(valeurs)
         if compatibleAllBefore(Xappel, i, JDD, solution):
             solution[Xappel] = i
-            if BT(solution, Xappel + 1, (JDD[0], valeurs2)):
+            if BTAC(solution, Xappel + 1, (JDD[0], valeurs2)):
                 # appel recursif de la fonction BT
                 return True
     return False

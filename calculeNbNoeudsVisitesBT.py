@@ -1,8 +1,16 @@
 ###################Backtracking ~ version renvoyant le nombre de noeuds parcourus##########################
 
-def nbNoeudVisitesBT(solution,Xappel,JeuDeDonnee, nbNoeudVisites):
-#renvoie un tuple : (bool, int), le booleen indique True s'il existe une solution, et False sinon
-#                                l'entier indique le nombre de noeux visités par l'algo de recherche
+from NDames import *
+def compteNoeudBT(solution,Xappel,JeuDeDonnee, nbNoeudVisites):
+    # input:
+    # ------
+    # solution: une liste de n zéros, où n est le nombre de variables dans le JeuDeDonnee
+    # Xappel : la première variable appelée lors de de l'application du backtracking
+    # JeuDeDonnee : le jeu de données sous forme de np.array
+    # noeudVisites : une liste vide
+
+    # renvoie un tuple : (bool, int), le booleen indique True s'il existe une solution, et False sinon
+    #
 
     if Xappel>=JeuDeDonnee.shape[0]:
         print(solution)
@@ -13,7 +21,7 @@ def nbNoeudVisitesBT(solution,Xappel,JeuDeDonnee, nbNoeudVisites):
         nbNoeudVisites += [(Xappel, i)]
         if compatibleAllBefore(Xappel,i,JeuDeDonnee,solution):
             solution[Xappel]=i
-            if nbNoeudVisitesBT(solution,Xappel+1,JeuDeDonnee, nbNoeudVisites)[0]:
+            if compteNoeudBT(solution,Xappel+1,JeuDeDonnee, nbNoeudVisites)[0]:
                 #appel recursif de la fonction BT
                 return (True, len(nbNoeudVisites))
     return (False, len(nbNoeudVisites))
@@ -24,3 +32,7 @@ def compatibleAllBefore(Xi,i,JeuDeDonnee,solution):
         if JeuDeDonnee[Xk,Xi][solution[Xk]][i]==0:
             return False
     return True
+
+#n=4
+#jeu = ndames(n)
+#print(compteNoeudBT([0]*jeu.shape[0],0,jeu,[]))
