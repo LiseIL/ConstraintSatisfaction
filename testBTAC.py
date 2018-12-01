@@ -14,7 +14,7 @@ class TestBTAC(unittest.TestCase):
         jeu1[1, 2] = np.array([[1, 0, 0], [1, 0, 0], [1, 0, 0]])
         jeu1[2, 1] = np.transpose(copy(jeu1[1, 2]))
         solution = [0, 0, 0]
-        jeu2 = BT(solution, 0, jeu1)
+        jeu2 = BTAC(solution, 0, jeu1)
         self.assertTrue(jeu2)
 
     def testEmptyDomainZero(self):
@@ -22,7 +22,7 @@ class TestBTAC(unittest.TestCase):
         for i in range(3):
             jeu1[i, i] = np.identity(4)
         solution = [0, 0, 0, 0]
-        jeu2 = BT(solution, 0, jeu1)
+        jeu2 = BTAC(solution, 0, jeu1)
         self.assertTrue(not jeu2)
 
     def testEmptyDomainTwo(self):
@@ -36,7 +36,7 @@ class TestBTAC(unittest.TestCase):
         jeu1[1, 2] = np.array([[0, 1, 0], [0, 0, 0], [0, 0, 0]])
         jeu1[2, 1] = np.transpose(copy(jeu1[1, 2]))
         solution = [0, 0, 0]
-        jeu1 = BT(solution, 0, jeu1)
+        jeu1 = BTAC(solution, 0, jeu1)
         self.assertTrue(not jeu1)
 
     def testIdentity(self):
@@ -45,19 +45,19 @@ class TestBTAC(unittest.TestCase):
             for j in range(3):
                 jeu1[i, j] = np.identity(4)
         solution = [0, 0, 0, 0]
-        jeu2 = BT(solution, 0, jeu1)
+        jeu2 = BTAC(solution, 0, jeu1)
         self.assertTrue(jeu2)
 
     def testNDames4(self):
         jeu = ndames(4)
         solution = [0, 0, 0, 0]
-        jeu2 = BT(solution, 0, jeu)
+        jeu2 = BTAC(solution, 0, jeu)
         self.assertTrue(jeu2)
 
     def testNDames5(self):
         jeu = ndames(5)
         solution = [0]*5
-        jeu2 = BT(solution, 0, jeu)
+        jeu2 = BTAC(solution, 0, jeu)
         self.assertTrue(jeu2)
 
 if __name__ == '__main__':
