@@ -14,9 +14,9 @@ def WithoutSupport_AC(i, j, b, jeuDD):
     if len(domaine_i) == 0:
         return 'EmptyDomain', i
     a = domaine_i[0]
-    while (a < domaine_i[-1]) and ((jeuDD[0])[i, j, a%2, b%2] == 0):
+    while (a < domaine_i[-1]) and ((jeuDD[0])[i, j, a % 2, b % 2] == 0):
         a = domaine_i[domaine_i.index(a) + 1]
-    return not(jeuDD[0][i, j, a, b] == 1)
+    return not(jeuDD[0][i, j, a % 2, b % 2] == 1)
 
 
 def initialisation_AC(jeuDD):
