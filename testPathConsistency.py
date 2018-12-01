@@ -9,7 +9,7 @@ from copy import *
 
 
 class testPC(unittest.TestCase):
-    def setUp(self):
+    def test_jeuExcours(self):
         R00 = [[0, 0], [0, 0]]
         R01 = [[1, 0], [0, 1]]
         R02 = [[0, 1], [1, 0]]
@@ -17,8 +17,6 @@ class testPC(unittest.TestCase):
         R12 = [[1, 0], [1, 1]]
         R20 = [[0, 1], [1, 0]]
         R21 = [[1, 1], [0, 1]]
-
-    def test_jeuExcours(self):
         jeu = np.array([[R00, R01, R02], [R10, R00, R12], [R20, R21, R00]])
         algorithmPC8(jeu)
         S00 = [[0, 0], [0, 0]]
