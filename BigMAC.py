@@ -5,7 +5,7 @@ import numpy as np
 from pathConsistency import *
 from Backtracking import *
 from genererJeuDeDonnees import*
-from AC2 import *
+from AC import *
 
 def bigmac(Xappel, domaineSolution, jeuDD):
     if Xappel >= jeuDD.shape[0] :
@@ -42,8 +42,7 @@ def compatibleAllBeforeOctopus(sousJeuDD, Xappel, domaineSolution):
         return True
     else:
         algorithmPC8(sousJeuDD)
-        valeurs = deepcopy(domaineSolution)
-        sousJeuDD = (algo_AC8((sousJeuDD, valeurs[:Xappel + 1])))[0]
+        sousJeuDD = (algo_AC8(sousJeuDD))[0]
         if isinstance(sousJeuDD, str): # cas où un des domaines est vide
             return False
         for variable in range(sousJeuDD.shape[0]-1):
