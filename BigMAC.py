@@ -7,7 +7,7 @@ from Backtracking import *
 from genererJeuDeDonnees import*
 from AC2 import *
 
-def octopus(Xappel, domaineSolution, jeuDD):
+def bigmac(Xappel, domaineSolution, jeuDD):
     if Xappel >= jeuDD.shape[0] :
         return True
     domainetuple = transformeDomaineTuple(jeuDD[Xappel, 0].shape[0])
@@ -15,7 +15,7 @@ def octopus(Xappel, domaineSolution, jeuDD):
         domaineSolution[Xappel] = tuple
         sousJeuDD = sousJeu(domaineSolution, Xappel, jeuDD)
         if compatibleAllBeforeOctopus(sousJeuDD, Xappel, domaineSolution):
-            if octopus(Xappel+1, domaineSolution, deepcopy(jeuDD)):
+            if bigmac(Xappel+1, domaineSolution, deepcopy(jeuDD)):
                 return True
     return False
 
