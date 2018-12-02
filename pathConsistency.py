@@ -26,7 +26,7 @@ def withoutSupportPC(i,j,k,a,b, jeuDD):
     if (not(jeuDD[i,k,a,c]==1 and jeuDD[j,k,b,c]==1)) and cardinald_k==2:
         c = 1
 
-    return not (jeuDD[i, k, a, c]==1 and jeuDD[j, k, b, c]==1)
+    return not(jeuDD[i, k, a, c]==1 and jeuDD[j, k, b, c]==1)
 
 
 
