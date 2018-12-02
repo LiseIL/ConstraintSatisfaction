@@ -21,10 +21,10 @@ def withoutSupportPC(i,j,k,a,b, jeuDD):
     R_ik = jeuDD[i,k]
     cardinald_k = (R_ik.shape)[1]
     assert(cardinald_k <= 2)
-    c = 0 #!!!Travailler avec domaine de Xk
+    c = 0  #!!!Travailler avec domaine de Xk
 
     if (not (jeuDD[i,k,a,c]==1 and jeuDD[j,k,b,c]==1)) and cardinald_k==2:
-        c=+1
+        c = 1
 
     return not (jeuDD[i, k, a, c]==1 and jeuDD[j, k, b, c]==1)
 
