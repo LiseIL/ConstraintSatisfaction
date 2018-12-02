@@ -13,63 +13,63 @@ import time
 import numpy as np
 
 
-def withoutSupportPC(i,j,k,a,b, jeuDD):
+def withoutSupportPC(i, j, k, a, b, jeuDD):
     """s'il existe un support c du couple (a,b) appartenant au domaine de
     la kième variable, retourne False ;
     sinon, retourne True"""
 
-    R_ik = jeuDD[i,k]
-    cardinald_k = (R_ik.shape)[1]
+    R_ik = jeuDD[i, k]
+    cardinald_k = R_ik.shape[1]
     assert(cardinald_k <= 2)
-    c = 0  #!!!Travailler avec domaine de Xk
+    c = 0  # !!!Travailler avec domaine de Xk
 
-    if (not(jeuDD[i,k,a,c]==1 and jeuDD[j,k,b,c]==1)) and cardinald_k==2:
+    if (not(jeuDD[i, k, a, c] == 1 and jeuDD[j, k, b, c] == 1)) and cardinald_k == 2:
         c = 1
 
-    return not(jeuDD[i, k, a, c]==1 and jeuDD[j, k, b, c]==1)
-
-
+    return not(jeuDD[i, k, a, c] == 1 and jeuDD[j, k, b, c] == 1)
 
 
 def initializationPC(jeuDD):
     listPC = []
     nbVar = jeuDD.shape[0]
     listeDeNone = [None] * nbVar
-    statusPC = [copy([copy(listeDeNone) for k in range(0,2)]) for i in range(0, nbVar)]
-    #!!!range de k -> à modifier
+    # statusPC = [copy([copy(listeDeNone) for k in range(2)]) for i in range(nbVar)]
+    statusPC = [[[False]*nbVar]*2]*nbVar
+    # !!!range de k -> à modifier
 
-    for i in range(0,nbVar): #nos variables sont indexées à partir de 0
-        for j in range(0, nbVar):
-            if i!=j:
-                domaine_i = (jeuDD[i,j].shape)[0]
-                for a in range(0,domaine_i):
+    for i in range(nbVar):  # nos variables sont indexées à partir de 0
+        for j in range(nbVar):
+            if i != j:
+                domaine_i = jeuDD[i,j].shape[0]
+                for a in range(domaine_i):
                     statusPC[i][a][j] = False
 
-    for i in range(0,nbVar):
-        for j in range(0, nbVar):
-            for k in range(0, nbVar):
-                if i<j and k!=i and k!=j:
-                    relationContrainte = jeuDD[i,j]
+    for i in range(nbVar):
+        for j in range(i + 1, nbVar):
+            for k in range(nbVar):
+                if k != i and k != j:
+                    relationContrainte = jeuDD[i, j]
                     domaine_a = relationContrainte.shape[0]
                     domaine_b = relationContrainte.shape[1]
-                    for a in range(0,domaine_a):
-                        for b in range(0,domaine_b):
-                            if jeuDD[i,j,a,b]==1: #!!!A verifier
+                    for a in range(domaine_a):
+                        for b in range(domaine_b):
+                            if jeuDD[i, j, a, b] == 1:  # !!!A verifier
 
                                 if withoutSupportPC(i,j,k,a,b, jeuDD):
-                                    jeuDD[i,j,a,b]=0
-                                    jeuDD[j,i,b,a]=0
+                                    jeuDD[i, j, a, b] = 0
+                                    jeuDD[j, i, b, a] = 0
 
-                                    if (statusPC[i][a][j] != None) and not statusPC[i][a][j]: #!!!A vérifier
-                                        listPC.append((i,a,j))
-                                        statusPC[i][a][j]=True
+                                    if not(statusPC[i][a][j]):  # !!!A vérifier
+                                        listPC.append((i, a, j))
+                                        statusPC[i][a][j] = True
 
-                                    if (statusPC[j][b][i] != None) and not statusPC[j][b][i]:
-                                        listPC.append((j, b ,i))
-                                        statusPC[j][b][i]=True
+                                    if not(statusPC[j][b][i]):
+                                        listPC.append((j, b, i))
+                                        statusPC[j][b][i] = True
     return (listPC, statusPC)
 
-def propagatePC(i,k,a, jeuDD, listPC, statusPC):
+
+def propagatePC(i, k, a, jeuDD, listPC, statusPC):
     assert(isinstance(i, int))
     assert (isinstance(k, int))
     #assert(isinstance(a, float)) #!!!A discuter
@@ -78,28 +78,29 @@ def propagatePC(i,k,a, jeuDD, listPC, statusPC):
     relationContrainte = jeuDD[i, k]
     domaine_b = relationContrainte.shape[1]
 
-    for j in range(1, nbVar):
-        if j!=i and j!=k:
-            for b in range(0,domaine_b):
-                if jeuDD[i, j, a ,b]==1:
+    for j in range(nbVar):
+        if j != i and j != k:
+            for b in range(domaine_b):
+                if jeuDD[i, j, a, b] == 1:
                     if withoutSupportPC(i, j, k, a, b, jeuDD):
-                        jeuDD[a, b] = 0
-                        jeuDD[b, a] = 0
+                        jeuDD[i, j, a, b] = 0
+                        jeuDD[j, i, b, a] = 0
 
-                        if not statusPC[i][a][j]:
+                        if not(statusPC[i][a][j]):
                             listPC.append((i, a, j))
                             statusPC[i][a][j] = True
 
-                        if not statusPC[j][b][i]:
+                        if not(statusPC[j][b][i]):
                             listPC.append((j, b, i))
                             statusPC[j][b][i] = True
+
 
 def algorithmPC8(jeuDD):
     init = initializationPC(jeuDD)
     listPC = init[0]
     statusPC = init[1]
 
-    while listPC != []:
+    while len(listPC) > 0:
         threeTuple = listPC[0]
         listPC.remove(threeTuple)
 

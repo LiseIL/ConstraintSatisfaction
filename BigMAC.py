@@ -6,6 +6,7 @@ from pathConsistency import *
 from Backtracking import *
 from genererJeuDeDonnees import*
 from AC import *
+from NDames import*
 
 def bigmac(Xappel, domaineSolution, jeuDD):
     if Xappel >= jeuDD.shape[0] :
@@ -37,19 +38,13 @@ def transformeDomaineTuple(n):
 
 
 def compatibleAllBeforeOctopus(sousJeuDD, Xappel, domaineSolution):
-
     if sousJeuDD.shape[0] == 1:
         return True
     else:
         algorithmPC8(sousJeuDD)
-        sousJeuDD = (algo_AC8(sousJeuDD))[0]
-        if isinstance(sousJeuDD, str): # cas où un des domaines est vide
+        ac = (algo_AC8(sousJeuDD))[0]
+        if isinstance(ac, str):  # cas où un des domaines est vide
             return False
-        for variable in range(sousJeuDD.shape[0]-1):
-            if variable != Xappel:
-                if np.array_equal(sousJeuDD[Xappel, variable] , np.zeros([sousJeuDD[Xappel, variable].shape[0], sousJeuDD[Xappel, variable].shape[0]])) or np.array_equal(sousJeuDD[variable, Xappel], np.zeros([sousJeuDD[Xappel, variable].shape[0], sousJeuDD[Xappel, variable].shape[0]])):
-                    return False
-
     return True
 
 
@@ -61,3 +56,5 @@ def sousJeu(domaineSolution, Xappel, jeuDD):
             new[X, variable] = deepcopy(jeuDD[X, variable, domaineSolution[X][0]:domaineSolution[X][1]+1, domaineSolution[variable][0]:domaineSolution[variable][1]+1])
     return new
 
+dames = ndames(4)
+print(bigmac(0, [0]*4, dames))
