@@ -15,7 +15,7 @@ def bigmac(Xappel, domaineSolution, jeuDD):
     for tuple in domainetuple:
         domaineSolution[Xappel] = tuple
         sousJeuDD = sousJeu(domaineSolution, Xappel, jeuDD)
-        if compatibleAllBeforeOctopus(sousJeuDD, Xappel, domaineSolution):
+        if compatibleAllBeforeOctopus(sousJeuDD):
             if bigmac(Xappel+1, domaineSolution, deepcopy(jeuDD)):
                 return True
     return False
@@ -37,7 +37,7 @@ def transformeDomaineTuple(n):
     return list
 
 
-def compatibleAllBeforeOctopus(sousJeuDD, Xappel, domaineSolution):
+def compatibleAllBeforeOctopus(sousJeuDD):
     if sousJeuDD.shape[0] == 1:
         return True
     else:
