@@ -1,4 +1,5 @@
 
+from BigMAC import*
 
 def compteNoeudBigmac(Xappel, domaineSolution, jeuDD, noeudVisites):
     if Xappel >= jeuDD.shape[0] :
