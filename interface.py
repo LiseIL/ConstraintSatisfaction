@@ -41,7 +41,7 @@ t11 = perf_counter()
 ts = t11 - t00
 m1 = m1 + [ts]
 
-#############Calcul pour BTAC (temps)
+#############Calcul pour Bigmac (temps)
 s1 = []
 s2=[0.8,0.8]
 t=0
@@ -49,7 +49,7 @@ s1 =s1+[t]
 Xappel=0
 
 t000 = perf_counter()
-n3 = BT([0]*jeu.shape[0],Xappel,jeu)
+n3 = bigmac(Xappel,[0]*jeu.shape[0],jeu)
 t111 = perf_counter()
 t = t111 - t000
 s1 = s1 + [t]
@@ -70,7 +70,7 @@ Xappel=0
 n2n = compteNoeudBTAC([0]*jeu.shape[0], Xappel, jeu, [])[1]
 m1n = m1n + [n2n]
 
-#############Calcul pour BTAC (noeuds)
+#############Calcul pour Bigmac (noeuds)
 s1n = [0]
 s2n=[0.8,0.8]
 Xappel=0
