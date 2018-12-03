@@ -1,4 +1,4 @@
-__Filename__ = 'octopus_PC.py'
+__Filename__ = 'BigMAC.py'
 
 from copy import *
 import numpy as np
