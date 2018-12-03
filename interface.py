@@ -6,6 +6,7 @@ from time import*
 import matplotlib.pyplot as plt
 from calculeNbNoeudsVisitesBT import*
 from calculeNbNoeudVisitesBTAC import *
+from calculeNbNoeudsVisitesBigMAC import*
 from Backtracking import*
 from BTAC import*
 from BigMAC import*
@@ -75,7 +76,7 @@ s1n = [0]
 s2n=[0.8,0.8]
 Xappel=0
 
-n3n = compteNoeudBT([0]*jeu.shape[0],Xappel,jeu,[])[1]
+n3n = compteNoeudBigmac(Xappel,[0]*jeu.shape[0],jeu,[])[1]
 s1n = s1n + [n3n]
 
 #############Propriétés de la fenêtre
