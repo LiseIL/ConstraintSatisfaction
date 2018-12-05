@@ -119,7 +119,7 @@ plt.legend(bbox_to_anchor=(1.01, 0), loc='lower left', fontsize =14,borderaxespa
 plt.ylabel('temps de calcul (en secondes)',fontsize=16)
 plt.yscale('log')
 plt.xlabel('taille du domaine',fontsize=16)
-axes1.set_xlim(left=2, right=None, emit=True, auto=False, xmin=2, xmax=None)
+axes1.set_xlim(left=None, right=None, emit=True, auto=False, xmin=2, xmax=None)
 
 #############Affichage du nombre de noeuds des methodes
 
@@ -138,7 +138,7 @@ plt.plot(l,testAllTimeNodesBigMAC[1],"o--",label='BigMAC',color="royalblue")
 plt.legend(bbox_to_anchor=(1.01, 0), loc='lower left', fontsize =14,borderaxespad=0.1)
 plt.ylabel('nombre de noeuds',fontsize=16)
 plt.xlabel('taille du domaine',fontsize=16)
-axes2.set_xlim(left=2, right=None, emit=True, auto=False, xmin=2, xmax=None)
+axes2.set_xlim(left=None, right=None, emit=True, auto=False, xmin=2, xmax=None)
 
 plt.subplots_adjust(left=0.09,right=0.88, wspace=0.1,hspace=0.5,
                     bottom=0.1, top=0.8)
