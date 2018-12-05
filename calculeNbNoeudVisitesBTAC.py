@@ -2,7 +2,7 @@ from BTAC import *
 
 ##################BT+AC ~ version renvoyant le nombre de noeuds parcourus##########################
 
-def compteNoeudBTAC(solution, Xappel, JeuDeDonnee, noeudVisites):
+def compteNoeudBTAC(Xappel, solution, JeuDeDonnee, noeudVisites):
     # Input
     # -----
     # solution: une liste de n zéros, où n est le nombre de variables dans le JeuDeDonnee
@@ -38,7 +38,7 @@ def compteNoeudBTAC(solution, Xappel, JeuDeDonnee, noeudVisites):
         valeurs2 = deepcopy(valeurs)
         if compatibleAllBefore(Xappel, i, JDD, solution):
             solution[Xappel] = i
-            if compteNoeudBTAC(solution, Xappel + 1, (JDD[0], valeurs2), noeudVisites)[0]:
+            if compteNoeudBTAC(Xappel + 1, solution, (JDD[0], valeurs2), noeudVisites)[0]:
                 # appel recursif de la fonction BT
                 return (True, len(noeudVisites))
     return (False, len(noeudVisites))
