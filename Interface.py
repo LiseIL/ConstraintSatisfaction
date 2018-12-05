@@ -96,10 +96,10 @@ plt.suptitle('Comparaison des algorithmes',fontsize=30)
 
 #############Affichage du temps de calcul des methodes
 
-plt.subplot(211)
+axes1=plt.subplot(211)
 
-plt.annotate(' nombre de variables : 15 \n nombre de contraintes : 100 \n taux de satisfiabilite : 0.5',fontsize=20, xy = (0.8,0.86),
-             xycoords='figure fraction', xytext = (0.8,0.86),
+plt.annotate(' nombre de variables : 15 \n nombre de contraintes : 100 \n taux de satisfiabilite : 0.5',fontsize=20, xy = (0.8,0.82),
+             xycoords='figure fraction', xytext = (0.8,0.82),
              arrowprops = {'facecolor': 'white', 'edgecolor': 'white',
                            'width': 15, 'headwidth': 30},
              bbox=dict(boxstyle="round,pad=0.1", facecolor="white",
@@ -119,10 +119,11 @@ plt.legend(bbox_to_anchor=(1.01, 0), loc='lower left', fontsize =14,borderaxespa
 plt.ylabel('temps de calcul (en secondes)',fontsize=16)
 plt.yscale('log')
 plt.xlabel('taille du domaine',fontsize=16)
+axes1.set_xlim(left=2, right=None, emit=True, auto=False, xmin=2, xmax=None)
 
 #############Affichage du nombre de noeuds des methodes
 
-plt.subplot(212)
+axes2=plt.subplot(212)
 
 plt.annotate('Etude du nombre de noeuds visites',fontsize=20, xy = (0.1,0.4),
              xycoords='figure fraction', xytext = (0.1,0.4),
@@ -137,10 +138,11 @@ plt.plot(l,testAllTimeNodesBigMAC[1],"o--",label='BigMAC',color="royalblue")
 plt.legend(bbox_to_anchor=(1.01, 0), loc='lower left', fontsize =14,borderaxespad=0.1)
 plt.ylabel('nombre de noeuds',fontsize=16)
 plt.xlabel('taille du domaine',fontsize=16)
+axes2.set_xlim(left=2, right=None, emit=True, auto=False, xmin=2, xmax=None)
 
 plt.subplots_adjust(left=0.09,right=0.88, wspace=0.1,hspace=0.5,
                     bottom=0.1, top=0.8)
 
-plt.savefig("Comparaison des algorithmes_X"+ str(nbVar) +"-C"+ str(nbContraintes) +"-S0,1_min-"+ str(minCardD)+"-max-"+ str(maxCardD)+"-step-"+str(stepCardD))
+plt.savefig('Comparaison des algorithmes_min-'+ str(minCardD)+"-max-"+ str(maxCardD)+"-step-"+str(stepCardD))
 
 plt.show()
