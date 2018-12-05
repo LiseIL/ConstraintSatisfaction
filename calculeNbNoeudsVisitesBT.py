@@ -1,7 +1,7 @@
 ###################Backtracking ~ version renvoyant le nombre de noeuds parcourus##########################
 
 from NDames import *
-def compteNoeudBT(solution,Xappel,JeuDeDonnee, nbNoeudVisites):
+def compteNoeudBT(Xappel, solution, JeuDeDonnee, nbNoeudVisites):
     # input:
     # ------
     # solution: une liste de n zéros, où n est le nombre de variables dans le JeuDeDonnee
@@ -21,7 +21,7 @@ def compteNoeudBT(solution,Xappel,JeuDeDonnee, nbNoeudVisites):
         nbNoeudVisites += [(Xappel, i)]
         if compatibleAllBefore(Xappel,i,JeuDeDonnee,solution):
             solution[Xappel]=i
-            if compteNoeudBT(solution,Xappel+1,JeuDeDonnee, nbNoeudVisites)[0]:
+            if compteNoeudBT(Xappel+1,solution, JeuDeDonnee, nbNoeudVisites)[0]:
                 #appel recursif de la fonction BT
                 return (True, len(nbNoeudVisites))
     return (False, len(nbNoeudVisites))
