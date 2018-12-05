@@ -32,13 +32,13 @@ def takeTimeNodes(jeuDD, algorithme, Xappel=0):
 
     return (tTotal, res[1])
 
-def ensembleJeuDomaineVariable(minCardD, maxCardD, stepCardD):
+def ensembleJeuDomaineVariable(minCardD, maxCardD, stepCardD, nbVar=5, nbContraintes=15, tauxSatisf=0.5):
     """Renvoie un ensemble de jeux de données stockés dans une liste. Les jeux de données ont tous
     le même nombre de variable, de contraintes et le même taux de satisfiabilité. On fait varier la taille des domaines"""
     ensembleJDD = []
     for cardD in range(minCardD, maxCardD, stepCardD):
         print("card",cardD)
-        ensembleJDD += [genererJeuDeDonnees(20,cardD, 70, 0.5)] #nb max contraintes avec 50 variables: 1225
+        ensembleJDD += [genererJeuDeDonnees(nbVar,cardD, nbContraintes, tauxSatisf)] #nb max contraintes avec 50 variables: 1225
     return ensembleJDD
 
 def takeAllTimeNodes(ensembleJDD, algorithme):
@@ -46,7 +46,6 @@ def takeAllTimeNodes(ensembleJDD, algorithme):
        -----
        ensembleJDD : une liste contenant des jeux de données
        algorithme : un des algorithmes suivant ~ compteNoeudBT, compteNouedBicmac, compteNoeudBTAC
-
        Output
        ------
        time : une liste des temps d'exécution telle que
@@ -64,9 +63,12 @@ def takeAllTimeNodes(ensembleJDD, algorithme):
     return time, nbNoeud
 
 #############Initialisation
-minCardD=6
+minCardD=2
 maxCardD=20
-stepCardD=2
+stepCardD=4
+nbVar=15
+nbContraintes = 100
+tauxSatisf = 0.5
 
 l=[]
 j=0
