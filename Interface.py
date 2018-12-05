@@ -141,6 +141,6 @@ plt.xlabel('taille du domaine',fontsize=16)
 plt.subplots_adjust(left=0.09,right=0.88, wspace=0.1,hspace=0.5,
                     bottom=0.1, top=0.8)
 
-plt.savefig('Comparaison des algorithmes_min-'+ str(minCardD)+"-max-"+ str(maxCardD)+"-step-"+str(stepCardD))
+plt.savefig("Comparaison des algorithmes_X"+ str(nbVar) +"-C"+ str(nbContraintes) +"-S0,1_min-"+ str(minCardD)+"-max-"+ str(maxCardD)+"-step-"+str(stepCardD))
 
 plt.show()
