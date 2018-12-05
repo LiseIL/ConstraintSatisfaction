@@ -77,7 +77,7 @@ for i in range(minCardD,maxCardD,stepCardD):
     j+=1
 print(l)
 
-ens = ensembleJeuDomaineVariable(minCardD, maxCardD, stepCardD)
+ens = ensembleJeuDomaineVariable(minCardD, maxCardD, stepCardD, nbVar, nbContraintes, tauxSatisf)
 
 #Pour le Backtracking
 print("1")
