@@ -64,17 +64,15 @@ def takeAllTimeNodes(ensembleJDD, algorithme):
 
 #############Initialisation
 minCardD=2
-maxCardD=20
+maxCardD=44
 stepCardD=4
 nbVar=15
 nbContraintes = 100
 tauxSatisf = 0.5
 
 l=[]
-j=0
 for i in range(minCardD,maxCardD,stepCardD):
-    l=l+[j]
-    j+=1
+    l=l+[i]
 print(l)
 
 ens = ensembleJeuDomaineVariable(minCardD, maxCardD, stepCardD, nbVar, nbContraintes, tauxSatisf)
@@ -88,7 +86,7 @@ print("2")
 testAllTimeNodesBTAC = takeAllTimeNodes(ens, compteNoeudBTAC)
 
 #Pour Bigmac
-print("2")
+print("3")
 testAllTimeNodesBigMAC = takeAllTimeNodes(ens, compteNoeudBigmac)
 
 #############Proprietes de la fenetre
@@ -98,7 +96,14 @@ plt.suptitle('Comparaison des algorithmes',fontsize=30)
 
 #############Affichage du temps de calcul des methodes
 
-axes1=plt.subplot(211)
+plt.subplot(211)
+
+plt.annotate(' nombre de variables : 15 \n nombre de contraintes : 100 \n taux de satisfiabilite : 0.5',fontsize=20, xy = (0.8,0.82),
+             xycoords='figure fraction', xytext = (0.8,0.82),
+             arrowprops = {'facecolor': 'white', 'edgecolor': 'white',
+                           'width': 15, 'headwidth': 30},
+             bbox=dict(boxstyle="round,pad=0.1", facecolor="white",
+                       edgecolor="grey", lw=1,))
 
 plt.annotate('Etude du temps de calcul',fontsize=20, xy = (0.1,0.82),
              xycoords='figure fraction', xytext = (0.1,0.82),
@@ -113,12 +118,11 @@ plt.plot(l,testAllTimeNodesBigMAC[0],"o--",label='BigMAC',color="royalblue")
 plt.legend(bbox_to_anchor=(1.01, 0), loc='lower left', fontsize =14,borderaxespad=0.1)
 plt.ylabel('temps de calcul (en secondes)',fontsize=16)
 plt.yscale('log')
-plt.xlabel('Jeu de donnees',fontsize=16)
-axes1.xaxis.set_ticks(range(len(l)))
+plt.xlabel('taille du domaine',fontsize=16)
 
 #############Affichage du nombre de noeuds des methodes
 
-axes2=plt.subplot(212)
+plt.subplot(212)
 
 plt.annotate('Etude du nombre de noeuds visites',fontsize=20, xy = (0.1,0.4),
              xycoords='figure fraction', xytext = (0.1,0.4),
@@ -132,8 +136,7 @@ plt.plot(l,testAllTimeNodesBTAC[1],"o--",label='Backtracking+AC',color="darkoran
 plt.plot(l,testAllTimeNodesBigMAC[1],"o--",label='BigMAC',color="royalblue")
 plt.legend(bbox_to_anchor=(1.01, 0), loc='lower left', fontsize =14,borderaxespad=0.1)
 plt.ylabel('nombre de noeuds',fontsize=16)
-plt.xlabel('Jeu de donnees',fontsize=16)
-axes2.xaxis.set_ticks(range(len(l)))
+plt.xlabel('taille du domaine',fontsize=16)
 
 plt.subplots_adjust(left=0.09,right=0.88, wspace=0.1,hspace=0.5,
                     bottom=0.1, top=0.8)
