@@ -98,8 +98,8 @@ plt.suptitle('Comparaison des algorithmes',fontsize=30)
 
 plt.subplot(211)
 
-plt.annotate(' nombre de variables : 15 \n nombre de contraintes : 100 \n taux de satisfiabilite : 0.5',fontsize=20, xy = (0.8,0.82),
-             xycoords='figure fraction', xytext = (0.8,0.82),
+plt.annotate(' nombre de variables : 15 \n nombre de contraintes : 100 \n taux de satisfiabilite : 0.5',fontsize=20, xy = (0.8,0.86),
+             xycoords='figure fraction', xytext = (0.8,0.86),
              arrowprops = {'facecolor': 'white', 'edgecolor': 'white',
                            'width': 15, 'headwidth': 30},
              bbox=dict(boxstyle="round,pad=0.1", facecolor="white",
