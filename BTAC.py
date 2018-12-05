@@ -26,9 +26,7 @@ def BTAC(solution, Xappel, JeuDeDonnee):
     for i in range(Xappel):
         valeurs += [[solution[i]]]
     valeurs += JeuDeDonnee[1][Xappel:]
-    print(valeurs)
     JDD = algo_AC8((JeuDeDonnee[0], valeurs))
-    print(JDD)
     if isinstance(JDD[0], str):
         return False
     if Xappel >= len(valeurs):
