@@ -96,10 +96,12 @@ plt.suptitle('Comparaison des algorithmes',fontsize=30)
 
 #############Affichage du temps de calcul des methodes
 
-
 axes1=plt.subplot(211)
 
-plt.annotate(' nombre de variables :'+ str(nbVar)+' \n nombre de contraintes : '+ str(nbContraintes)+' \n taux de satisfiabilite : '+ str(tauxSatisf),fontsize=20, xy = (0.8,0.86),
+plt.annotate(' nombre de variables :'+ str(nbVar)+
+             ' \n nombre de contraintes : '+ str(nbContraintes)+
+             ' \n taux de satisfiabilite : '+ str(tauxSatisf),
+             fontsize=20, xy = (0.8,0.86),
              xycoords='figure fraction', xytext = (0.8,0.82),
              arrowprops = {'facecolor': 'white', 'edgecolor': 'white',
                            'width': 15, 'headwidth': 30},
@@ -113,37 +115,52 @@ plt.annotate('Etude du temps de calcul',fontsize=20, xy = (0.1,0.82),
              bbox=dict(boxstyle="round,pad=0.5", facecolor="white",
                        edgecolor="forestgreen", lw=1,))
 
-plt.plot(l,testAllTimeNodesBT[0],"o--",label='Backtracking',color="firebrick")
-plt.plot(l,testAllTimeNodesBTAC[0],"o--",label='Backtracking+AC',color="darkorange")
-plt.plot(l,testAllTimeNodesBigMAC[0],"o--",label='BigMAC',color="royalblue")
-plt.legend(bbox_to_anchor=(1.01, 0), loc='lower left', fontsize =14,borderaxespad=0.1)
+plt.plot(l,testAllTimeNodesBT[0],"o--",label='Backtracking',
+         color="firebrick")
+plt.plot(l,testAllTimeNodesBTAC[0],"o--",
+         label='Backtracking+AC',color="darkorange")
+plt.plot(l,testAllTimeNodesBigMAC[0],"o--",label='BigMAC',
+         color="royalblue")
+plt.legend(bbox_to_anchor=(1.01, 0), loc='lower left',
+           fontsize =14,borderaxespad=0.1)
 plt.ylabel('temps de calcul (en secondes)',fontsize=16)
 plt.yscale('log')
 plt.xlabel('taille du domaine',fontsize=16)
-axes1.set_xlim(left=None, right=None, emit=True, auto=False, xmin=minCardD, xmax=None)
+#axes1.set_xlim(left=None, right=None, emit=True,
+#               auto=False, xmin=minCardD, xmax=None)
+plt.xticks(np.arange(minCardD, maxCardD, step=stepCardD))
 
 #############Affichage du nombre de noeuds des methodes
 
 axes2=plt.subplot(212)
 
-plt.annotate('Etude du nombre de noeuds visites',fontsize=20, xy = (0.1,0.4),
+plt.annotate('Etude du nombre de noeuds visites',fontsize=20,
+             xy = (0.1,0.4),
              xycoords='figure fraction', xytext = (0.1,0.4),
              arrowprops = {'facecolor': 'white', 'edgecolor': 'white',
                            'width': 15, 'headwidth': 30},
              bbox=dict(boxstyle="round,pad=0.5", facecolor="white",
                        edgecolor="forestgreen", lw=1,))
 
-plt.plot(l,testAllTimeNodesBT[1],"o--",label='Backtracking',color="firebrick")
-plt.plot(l,testAllTimeNodesBTAC[1],"o--",label='Backtracking+AC',color="darkorange")
-plt.plot(l,testAllTimeNodesBigMAC[1],"o--",label='BigMAC',color="royalblue")
-plt.legend(bbox_to_anchor=(1.01, 0), loc='lower left', fontsize =14,borderaxespad=0.1)
+plt.plot(l,testAllTimeNodesBT[1],"o--",label='Backtracking',
+         color="firebrick")
+plt.plot(l,testAllTimeNodesBTAC[1],"o--",label='Backtracking+AC',
+         color="darkorange")
+plt.plot(l,testAllTimeNodesBigMAC[1],"o--",label='BigMAC',
+         color="royalblue")
+plt.legend(bbox_to_anchor=(1.01, 0), loc='lower left',
+           fontsize =14,borderaxespad=0.1)
 plt.ylabel('nombre de noeuds',fontsize=16)
 plt.xlabel('taille du domaine',fontsize=16)
-axes2.set_xlim(left=None, right=None, emit=True, auto=False, xmin=minCardD, xmax=None)
-
+#axes2.set_xlim(left=None, right=None, emit=True, auto=False,
+#               xmin=minCardD, xmax=None)
+plt.xticks(np.arange(minCardD, maxCardD, step=stepCardD))
 plt.subplots_adjust(left=0.09,right=0.88, wspace=0.1,hspace=0.5,
                     bottom=0.1, top=0.8)
 
-plt.savefig("Comparaison des algorithmes_X"+ str(nbVar) +"-C"+ str(nbContraintes) +"-S0,1_min-"+ str(minCardD)+"-max-"+ str(maxCardD)+"-step-"+str(stepCardD))
+plt.savefig("Comparaison des algorithmes_X"+ str(nbVar) +
+            "-C"+ str(nbContraintes) +"-S0,1_min-"+ str(minCardD)+
+            "-max-"+ str(maxCardD)+"-step-"+str(stepCardD))
 
 plt.show()
+
