@@ -110,12 +110,18 @@ plt.annotate(' nombre de variables :'+ str(nbVar)+
              bbox=dict(boxstyle="round,pad=0.5", facecolor="white",
                        edgecolor="forestgreen", lw=1,))
 
+plt.scatter(l,testAllTimeNodesBTmax[0],marker="o",
+         color="firebrick",lw=10)
 plt.plot(l,testAllTimeNodesBTmax[0],"o--",label='Backtracking',
-         color="firebrick")
-plt.plot(l,testAllTimeNodesBTACmax[0],"o--",
-         label='Backtracking+AC',color="darkorange")
+         color="firebrick",lw=5)
+plt.scatter(l,testAllTimeNodesBTACmax[0],marker="o",
+         color="darkorange",lw=10)
+plt.plot(l,testAllTimeNodesBTACmax[0],"o--",label='Backtracking+AC',
+         color="darkorange",lw=5)
+plt.scatter(l,testAllTimeNodesBigMACmax[0],marker="o",
+         color="royalblue",lw=10)
 plt.plot(l,testAllTimeNodesBigMACmax[0],"o--",label='BigMAC',
-         color="royalblue")
+         color="royalblue",lw=5)
 plt.ylabel('temps de calcul (en secondes)',fontsize=20)
 plt.yscale('log')
 plt.xlabel('taille du domaine',fontsize=20)
@@ -136,12 +142,18 @@ plt.annotate(' nombre de variables :'+ str(nbVar)+
              bbox=dict(boxstyle="round,pad=0.5", facecolor="white",
                        edgecolor="forestgreen", lw=1,))
 
+plt.scatter(l,testAllTimeNodesBTmin[0],marker="o",
+         color="firebrick",lw=10)
 plt.plot(l,testAllTimeNodesBTmin[0],"o--",label='Backtracking',
-         color="firebrick")
-plt.plot(l,testAllTimeNodesBTACmin[0],"o--",
-         label='Backtracking+AC',color="darkorange")
+         color="firebrick",lw=5)
+plt.scatter(l,testAllTimeNodesBTACmin[0],marker="o",
+         color="darkorange",lw=10)
+plt.plot(l,testAllTimeNodesBTACmin[0],"o--",label='Backtracking+AC',
+         color="darkorange",lw=5)
+plt.scatter(l,testAllTimeNodesBigMACmin[0],marker="o",
+         color="royalblue",lw=10)
 plt.plot(l,testAllTimeNodesBigMACmin[0],"o--",label='BigMAC',
-         color="royalblue")
+         color="royalblue",lw=5)
 plt.legend(bbox_to_anchor=(0.8, 1.07), loc='lower left',
            fontsize =20,borderaxespad=0.1)
 plt.ylabel('temps de calcul (en secondes)',fontsize=20)
@@ -171,12 +183,18 @@ plt.annotate(' nombre de variables :'+ str(nbVar)+
              bbox=dict(boxstyle="round,pad=0.5", facecolor="white",
                        edgecolor="forestgreen", lw=1,))
 
+plt.scatter(l,testAllTimeNodesBTmax[1],marker="o",
+         color="firebrick",lw=10)
 plt.plot(l,testAllTimeNodesBTmax[1],"o--",label='Backtracking',
-         color="firebrick")
+         color="firebrick",lw=5)
+plt.scatter(l,testAllTimeNodesBTACmax[1],marker="o",
+         color="darkorange",lw=10)
 plt.plot(l,testAllTimeNodesBTACmax[1],"o--",label='Backtracking+AC',
-         color="darkorange")
+         color="darkorange",lw=5)
+plt.scatter(l,testAllTimeNodesBigMACmax[1],marker="o",
+         color="royalblue",lw=10)
 plt.plot(l,testAllTimeNodesBigMACmax[1],"o--",label='BigMAC',
-         color="royalblue")
+         color="royalblue",lw=5)
 plt.ylabel('nombre de noeuds',fontsize=20)
 plt.xlabel('taille du domaine',fontsize=20)
 
@@ -203,12 +221,18 @@ plt.annotate(' nombre de variables :'+ str(nbVar)+
              bbox=dict(boxstyle="round,pad=0.5", facecolor="white",
                        edgecolor="forestgreen", lw=1,))
 
+plt.scatter(l,testAllTimeNodesBTmin[1],marker="o",
+         color="firebrick",lw=10)
 plt.plot(l,testAllTimeNodesBTmin[1],"o--",label='Backtracking',
-         color="firebrick")
+         color="firebrick",lw=5)
+plt.scatter(l,testAllTimeNodesBTACmin[1],marker="o",
+         color="darkorange",lw=10)
 plt.plot(l,testAllTimeNodesBTACmin[1],"o--",label='Backtracking+AC',
-         color="darkorange")
+         color="darkorange",lw=5)
+plt.scatter(l,testAllTimeNodesBigMACmin[1],marker="o",
+         color="royalblue",lw=10)
 plt.plot(l,testAllTimeNodesBigMACmin[1],"o--",label='BigMAC',
-         color="royalblue")
+         color="royalblue",lw=5)
 plt.legend(bbox_to_anchor=(0.8, 1.07), loc='lower left',
            fontsize =20,borderaxespad=0.1)
 plt.ylabel('nombre de noeuds',fontsize=20)
@@ -228,3 +252,4 @@ plt.savefig("Comparaison des algorithmes_X"+ str(nbVar) +
 
 
 plt.show()
+
